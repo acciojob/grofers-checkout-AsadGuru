@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Monthly Savings</title>
 </head>
@@ -37,8 +39,16 @@
         </tr>
     </table>
 
+    <button id="calculate">Calculate Total</button>
+
+    <!-- Get Total Price Button -->
     <script type="text/javascript">
-        function calculateTotal() {
+        // Create and append the "Get Total Price" button
+        const getSumBtn = document.createElement("button");
+        getSumBtn.textContent = "Get Total Price"; // Set button text
+        document.body.appendChild(getSumBtn);
+
+        const getSum = () => {
             // Step 1: Select all price elements
             const priceElements = document.querySelectorAll('.price');
 
@@ -50,24 +60,12 @@
                 total += parseFloat(priceElement.textContent) || 0; // Convert to float and add to total
             });
 
-            // Step 4: Create a new row for the total
-            const table = document.querySelector('table');
-            const totalRow = document.createElement('tr');
+            // Step 4: Display the total price
+            alert(`Total Price: Rs ${total.toFixed(2)}`); // Display the total in an alert
+        };
 
-            // Step 5: Create a cell for the total price
-            const totalCell = document.createElement('td');
-            totalCell.colSpan = 2; // Span across both columns
-            totalCell.textContent = 'Total: Rs ' + total.toFixed(2); // Format total to 2 decimal places
-
-            // Step 6: Append the total cell to the total row
-            totalRow.appendChild(totalCell);
-
-            // Step 7: Append the total row to the table
-            table.appendChild(totalRow);
-        }
-
-        // Step 8: Call the function to calculate and display the total
-        calculateTotal();
+        // Add event listener for button click
+        getSumBtn.addEventListener("click", getSum);
     </script>
 
 </body>
